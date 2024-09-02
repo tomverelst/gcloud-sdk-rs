@@ -5,6 +5,7 @@ use std::path::PathBuf;
 
 use async_trait::async_trait;
 use chrono::prelude::*;
+use log::debug;
 use secret_vault_value::SecretValue;
 
 pub mod auth_token_generator;
@@ -65,6 +66,7 @@ pub async fn find_default(token_scopes: &[String]) -> crate::error::Result<BoxSo
         return Ok(src.into());
     }
     if let Some(src) = from_well_known_file(token_scopes)? {
+        debug!("Scopes: {:?}", token_scopes);
         debug!("Creating token based on standard config files such as application_default_credentials.json");
         return Ok(src.into());
     }
