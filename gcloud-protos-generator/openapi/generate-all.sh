@@ -4,7 +4,7 @@ set -oe pipefail
 
 SCRIPT_LOCATION=$( dirname -- "$0"; );
 SPEC_LOCATIONS="$SCRIPT_LOCATION/google"
-GENERATOR_LOCATION="$SCRIPT_LOCATION/generator/openapi-generator-cli-7.1.0.jar"
+GENERATOR_LOCATION="$SCRIPT_LOCATION/generator/openapi-generator-cli-7.7.0.jar"
 GCLOUD_SDK_DIR="$SCRIPT_LOCATION/../../gcloud-sdk"
 TEMPLATES_DIR="$SCRIPT_LOCATION/templates"
 
@@ -36,21 +36,23 @@ do
 
     java -DmaxYamlCodePoints=99999999 -jar "$GENERATOR_LOCATION" generate -i "$API_DIR_FILE" -g rust -o "$TEMP_OUTPUT/$API_NAME" --additional-properties=useSingleRequestParameter=true --additional-properties=packageName="$API_DIR_NAME"
 
-    sed -i "s/crate::apis/crate::google_rest_apis::$API_NAME::apis/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
-    sed -i "s/_period_/_/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
-    sed -i "s/crate::models/crate::google_rest_apis::$API_NAME::models/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
-    sed -i "s/crate::models/crate::google_rest_apis::$API_NAME::models/g" "$TEMP_OUTPUT"/"$API_NAME"/src/models/*.rs
+    echo $API_NAME
+    echo $TEMP_OUTPUT
+    sed -i '' "s/crate::apis/crate::google_rest_apis::$API_NAME::apis/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
+    sed -i '' "s/_period_/_/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
+    sed -i '' "s/crate::models/crate::google_rest_apis::$API_NAME::models/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
+    sed -i '' "s/crate::models/crate::google_rest_apis::$API_NAME::models/g" "$TEMP_OUTPUT"/"$API_NAME"/src/models/*.rs
 
-    sed -i '1s;^;use serde::{Serialize,Deserialize}\;;' "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
-    sed -i '1s;^;use serde::{Serialize,Deserialize}\;;' "$TEMP_OUTPUT"/"$API_NAME"/src/models/*.rs
+    sed -i '' '1s;^;use serde::{Serialize,Deserialize}\;;' "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
+    sed -i '' '1s;^;use serde::{Serialize,Deserialize}\;;' "$TEMP_OUTPUT"/"$API_NAME"/src/models/*.rs
 
     # Version 7.1.0 of the generator does not generate Default trait for models and apis.
     # Hopefully they will fix it with additional parameter, until then - hello sed!
-    sed -i "s/\#\[derive(Clone, Debug)\]/\#\[derive(Clone, Debug, Default)\]/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
-    sed -i "s/\#\[derive(Clone, Debug)\]/\#\[derive(Clone, Debug, Default)\]/g" "$TEMP_OUTPUT"/"$API_NAME"/src/models/*.rs
+    sed -i '' "s/\#\[derive(Clone, Debug)\]/\#\[derive(Clone, Debug, Default)\]/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
+    sed -i '' "s/\#\[derive(Clone, Debug)\]/\#\[derive(Clone, Debug, Default)\]/g" "$TEMP_OUTPUT"/"$API_NAME"/src/models/*.rs
 
-    sed -i "s/\#\[derive(Clone, Debug, PartialEq, Serialize, Deserialize)\]/\#\[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)\]/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
-    sed -i "s/\#\[derive(Clone, Debug, PartialEq, Serialize, Deserialize)\]/\#\[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)\]/g" "$TEMP_OUTPUT"/"$API_NAME"/src/models/*.rs
+    sed -i '' "s/\#\[derive(Clone, Debug, PartialEq, Serialize, Deserialize)\]/\#\[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)\]/g" "$TEMP_OUTPUT"/"$API_NAME"/src/apis/*.rs
+    sed -i '' "s/\#\[derive(Clone, Debug, PartialEq, Serialize, Deserialize)\]/\#\[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)\]/g" "$TEMP_OUTPUT"/"$API_NAME"/src/models/*.rs
 
     rm -fr "${GLOBAL_OUTPUT_DIR:?}/${API_NAME:?}"
     mkdir -p "$GLOBAL_OUTPUT_DIR/$API_NAME"

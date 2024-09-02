@@ -1,3 +1,4 @@
+
 #[cfg(any(feature = "google-rest-bigquery-v2"))]
 pub mod bigquery_v2;
 
@@ -12,3 +13,6 @@ pub mod sqladmin_v1;
 
 #[cfg(any(feature = "google-rest-storage-v1"))]
 pub mod storage_v1;
+
+#[cfg(any(feature = "google-rest-workflowexecutions-v1"))]
+pub mod workflowexecutions_v1;
