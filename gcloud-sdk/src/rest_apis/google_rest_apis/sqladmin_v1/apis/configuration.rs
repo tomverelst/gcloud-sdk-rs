@@ -1,4 +1,4 @@
-/*
+use serde::{Deserialize, Serialize}; /*
                                       * Cloud SQL Admin API
                                       *
                                       * API for Cloud SQL database instance management

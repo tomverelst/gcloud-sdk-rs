@@ -4,7 +4,7 @@ set -oe pipefail
 
 SCRIPT_LOCATION=$( dirname -- "$0"; );
 SPEC_LOCATIONS="$SCRIPT_LOCATION/google"
-GENERATOR_LOCATION="$SCRIPT_LOCATION/generator/openapi-generator-cli-7.7.0.jar"
+GENERATOR_LOCATION="$SCRIPT_LOCATION/generator/openapi-generator-cli-7.1.0.jar"
 GCLOUD_SDK_DIR="$SCRIPT_LOCATION/../../gcloud-sdk"
 TEMPLATES_DIR="$SCRIPT_LOCATION/templates"
 

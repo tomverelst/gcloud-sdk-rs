@@ -1,4 +1,4 @@
-/*
+use serde::{Deserialize, Serialize}; /*
                                       * BigQuery API
                                       *
                                       * A data platform for customers to create, manage, share and query data.

@@ -1,4 +1,4 @@
-/*
+use serde::{Deserialize, Serialize}; /*
                                       * Compute Engine API
                                       *
                                       * Creates and runs virtual machines on Google Cloud Platform.

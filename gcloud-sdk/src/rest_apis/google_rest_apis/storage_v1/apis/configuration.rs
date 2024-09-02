@@ -1,4 +1,4 @@
-/*
+use serde::{Deserialize, Serialize}; /*
                                       * Cloud Storage JSON API
                                       *
                                       * Stores and retrieves potentially large, immutable data objects.
