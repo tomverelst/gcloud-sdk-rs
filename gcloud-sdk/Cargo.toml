@@ -429,6 +429,7 @@ google-rest-sqladmin-v1 = ["rest"]
 google-rest-dns-v1 = ["rest"]
 google-rest-compute-v1 = ["rest"]
 google-rest-workflowexecutions-v1 = ["rest"]
+google-rest-workflows-v1 = ["rest"]
 
 [dependencies]
 tonic = { version = "0.12", features = ["tls"] }

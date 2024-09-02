@@ -16,3 +16,6 @@ pub mod storage_v1;
 
 #[cfg(any(feature = "google-rest-workflowexecutions-v1"))]
 pub mod workflowexecutions_v1;
+
+#[cfg(any(feature = "google-rest-workflows-v1"))]
+pub mod workflows_v1;
