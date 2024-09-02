@@ -5,7 +5,6 @@ use std::path::PathBuf;
 
 use async_trait::async_trait;
 use chrono::prelude::*;
-use log::debug;
 use secret_vault_value::SecretValue;
 
 pub mod auth_token_generator;
