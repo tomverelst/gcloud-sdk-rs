@@ -365,8 +365,6 @@ pub async fn workflows_projects_locations_list(
     let local_var_uri_str = format!(
         "{}/v1/{name}/locations",
         local_var_configuration.base_path,
-        // name
-        // name = crate::google_rest_apis::workflows_v1::apis::urlencode(name)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());

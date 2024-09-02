@@ -373,7 +373,6 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_callback
     let local_var_uri_str = format!(
         "{}/v1/{parent}/callbacks",
         local_var_configuration.base_path,
-        parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -482,7 +481,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_cancel(c
     let local_var_uri_str = format!(
         "{}/v1/{name}:cancel",
         local_var_configuration.base_path,
-        name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
+        // name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -584,7 +583,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_create(c
     let local_var_uri_str = format!(
         "{}/v1/{parent}/executions",
         local_var_configuration.base_path,
-        parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
+        // parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -685,7 +684,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_export_d
     let local_var_uri_str = format!(
         "{}/v1/{name}:exportData",
         local_var_configuration.base_path,
-        name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
+        // name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -790,7 +789,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_list(con
     let local_var_uri_str = format!(
         "{}/v1/{parent}/executions",
         local_var_configuration.base_path,
-        parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
+        // parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -911,7 +910,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_step_ent
     let local_var_uri_str = format!(
         "{}/v1/{name}",
         local_var_configuration.base_path,
-        name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
+        // name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1020,7 +1019,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_step_ent
     let local_var_uri_str = format!(
         "{}/v1/{parent}/stepEntries",
         local_var_configuration.base_path,
-        parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
+        // parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1141,7 +1140,7 @@ pub async fn workflowexecutions_projects_locations_workflows_trigger_pubsub_exec
     let local_var_uri_str = format!(
         "{}/v1/{workflow}:triggerPubsubExecution",
         local_var_configuration.base_path,
-        workflow = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(workflow)
+        // workflow = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(workflow)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
