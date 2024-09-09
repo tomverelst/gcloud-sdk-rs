@@ -139,6 +139,38 @@ pub struct WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodE
     pub upload_type: Option<String>,
 }
 
+/// struct for passing parameters to the method [`workflowexecutions_projects_locations_workflows_executions_get`]
+#[derive(Clone, Debug, Default)]
+pub struct WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodGetParams
+{
+    /// Required. The name of the workflow execution to retrieve. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}
+    pub name: String,
+    /// V1 error format.
+    pub dollar_xgafv: Option<String>,
+    /// OAuth access token.
+    pub access_token: Option<String>,
+    /// Data format for response.
+    pub alt: Option<String>,
+    /// JSONP
+    pub callback: Option<String>,
+    /// Selector specifying which fields to include in a partial response.
+    pub fields: Option<String>,
+    /// API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
+    pub key: Option<String>,
+    /// OAuth 2.0 token for the current user.
+    pub oauth_token: Option<String>,
+    /// Returns response with indentations and line breaks.
+    pub pretty_print: Option<bool>,
+    /// Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
+    pub quota_user: Option<String>,
+    /// Upload protocol for media (e.g. \"raw\", \"multipart\").
+    pub upload_protocol: Option<String>,
+    /// Legacy upload protocol for media (e.g. \"media\", \"multipart\").
+    pub upload_type: Option<String>,
+    /// Optional. A view defining which fields should be filled in the returned execution. The API will default to the FULL view.
+    pub view: Option<String>,
+}
+
 /// struct for passing parameters to the method [`workflowexecutions_projects_locations_workflows_executions_list`]
 #[derive(Clone, Debug, Default)]
 pub struct WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodListParams
@@ -176,38 +208,6 @@ pub struct WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodE
     /// A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token. Note that pagination is applied to dynamic data. The list of executions returned can change between page requests.
     pub page_token: Option<String>,
     /// Optional. A view defining which fields should be filled in the returned executions. The API will default to the BASIC view.
-    pub view: Option<String>,
-}
-
-/// struct for passing parameters to the method [`workflowexecutions_projects_locations_workflows_executions_step_entries_get`]
-#[derive(Clone, Debug, Default)]
-pub struct WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodStepEntriesPeriodGetParams
-{
-    /// Required. The name of the step entry to retrieve. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}/stepEntries/{step_entry}
-    pub name: String,
-    /// V1 error format.
-    pub dollar_xgafv: Option<String>,
-    /// OAuth access token.
-    pub access_token: Option<String>,
-    /// Data format for response.
-    pub alt: Option<String>,
-    /// JSONP
-    pub callback: Option<String>,
-    /// Selector specifying which fields to include in a partial response.
-    pub fields: Option<String>,
-    /// API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.
-    pub key: Option<String>,
-    /// OAuth 2.0 token for the current user.
-    pub oauth_token: Option<String>,
-    /// Returns response with indentations and line breaks.
-    pub pretty_print: Option<bool>,
-    /// Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
-    pub quota_user: Option<String>,
-    /// Upload protocol for media (e.g. \"raw\", \"multipart\").
-    pub upload_protocol: Option<String>,
-    /// Legacy upload protocol for media (e.g. \"media\", \"multipart\").
-    pub upload_type: Option<String>,
-    /// Optional. A view defining which fields should be filled in the returned execution. The API will default to the FULL view.
     pub view: Option<String>,
 }
 
@@ -316,18 +316,18 @@ pub enum WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExe
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`workflowexecutions_projects_locations_workflows_executions_list`]
+/// struct for typed errors of method [`workflowexecutions_projects_locations_workflows_executions_get`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodListError
+pub enum WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodGetError
 {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`workflowexecutions_projects_locations_workflows_executions_step_entries_get`]
+/// struct for typed errors of method [`workflowexecutions_projects_locations_workflows_executions_list`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodStepEntriesPeriodGetError
+pub enum WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodListError
 {
     UnknownValue(serde_json::Value),
 }
@@ -373,6 +373,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_callback
     let local_var_uri_str = format!(
         "{}/v1/{parent}/callbacks",
         local_var_configuration.base_path,
+        parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -481,7 +482,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_cancel(c
     let local_var_uri_str = format!(
         "{}/v1/{name}:cancel",
         local_var_configuration.base_path,
-        // name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
+        // // name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -583,7 +584,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_create(c
     let local_var_uri_str = format!(
         "{}/v1/{parent}/executions",
         local_var_configuration.base_path,
-        // parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
+        parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -684,7 +685,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_export_d
     let local_var_uri_str = format!(
         "{}/v1/{name}:exportData",
         local_var_configuration.base_path,
-        // name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
+        // // name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -761,6 +762,111 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_export_d
     }
 }
 
+/// Gets a workflow execution.
+pub async fn workflowexecutions_projects_locations_workflows_executions_get(configuration: &configuration::Configuration, params: WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodGetParams) -> Result<crate::google_rest_apis::workflowexecutions_v1::models::Execution, Error<WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodGetError>>{
+    let local_var_configuration = configuration;
+
+    // unbox the parameters
+    let name = params.name;
+    let dollar_xgafv = params.dollar_xgafv;
+    let access_token = params.access_token;
+    let alt = params.alt;
+    let callback = params.callback;
+    let fields = params.fields;
+    let key = params.key;
+    let oauth_token = params.oauth_token;
+    let pretty_print = params.pretty_print;
+    let quota_user = params.quota_user;
+    let upload_protocol = params.upload_protocol;
+    let upload_type = params.upload_type;
+    let view = params.view;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/v1/{name}",
+        local_var_configuration.base_path,
+        // name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = dollar_xgafv {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("$.xgafv", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = access_token {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("access_token", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = alt {
+        local_var_req_builder = local_var_req_builder.query(&[("alt", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = callback {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("callback", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = fields {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("fields", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = key {
+        local_var_req_builder = local_var_req_builder.query(&[("key", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = oauth_token {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("oauth_token", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = pretty_print {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("prettyPrint", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = quota_user {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("quotaUser", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = upload_protocol {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("upload_protocol", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = upload_type {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("uploadType", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = view {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("view", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodGetError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Returns a list of executions which belong to the workflow with the given name. The method returns executions of all workflow revisions. Returned executions are ordered by their start time (newest first).
 pub async fn workflowexecutions_projects_locations_workflows_executions_list(configuration: &configuration::Configuration, params: WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodListParams) -> Result<crate::google_rest_apis::workflowexecutions_v1::models::ListExecutionsResponse, Error<WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodListError>>{
     let local_var_configuration = configuration;
@@ -789,7 +895,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_list(con
     let local_var_uri_str = format!(
         "{}/v1/{parent}/executions",
         local_var_configuration.base_path,
-        // parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
+        parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -886,111 +992,6 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_list(con
     }
 }
 
-/// Gets a step entry.
-pub async fn workflowexecutions_projects_locations_workflows_executions_step_entries_get(configuration: &configuration::Configuration, params: WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodStepEntriesPeriodGetParams) -> Result<crate::google_rest_apis::workflowexecutions_v1::models::StepEntry, Error<WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodStepEntriesPeriodGetError>>{
-    let local_var_configuration = configuration;
-
-    // unbox the parameters
-    let name = params.name;
-    let dollar_xgafv = params.dollar_xgafv;
-    let access_token = params.access_token;
-    let alt = params.alt;
-    let callback = params.callback;
-    let fields = params.fields;
-    let key = params.key;
-    let oauth_token = params.oauth_token;
-    let pretty_print = params.pretty_print;
-    let quota_user = params.quota_user;
-    let upload_protocol = params.upload_protocol;
-    let upload_type = params.upload_type;
-    let view = params.view;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!(
-        "{}/v1/{name}",
-        local_var_configuration.base_path,
-        // name = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(name)
-    );
-    let mut local_var_req_builder =
-        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_str) = dollar_xgafv {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("$.xgafv", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = access_token {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("access_token", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = alt {
-        local_var_req_builder = local_var_req_builder.query(&[("alt", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = callback {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("callback", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = fields {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("fields", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = key {
-        local_var_req_builder = local_var_req_builder.query(&[("key", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = oauth_token {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("oauth_token", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = pretty_print {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("prettyPrint", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = quota_user {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("quotaUser", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = upload_protocol {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("upload_protocol", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = upload_type {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("uploadType", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_str) = view {
-        local_var_req_builder =
-            local_var_req_builder.query(&[("view", &local_var_str.to_string())]);
-    }
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder =
-            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
-        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
-    };
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodStepEntriesPeriodGetError> = serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent {
-            status: local_var_status,
-            content: local_var_content,
-            entity: local_var_entity,
-        };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
 /// Lists step entries for the corresponding workflow execution. Returned entries are ordered by their create_time.
 pub async fn workflowexecutions_projects_locations_workflows_executions_step_entries_list(configuration: &configuration::Configuration, params: WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodStepEntriesPeriodListParams) -> Result<crate::google_rest_apis::workflowexecutions_v1::models::ListStepEntriesResponse, Error<WorkflowexecutionsPeriodProjectsPeriodLocationsPeriodWorkflowsPeriodExecutionsPeriodStepEntriesPeriodListError>>{
     let local_var_configuration = configuration;
@@ -1019,7 +1020,7 @@ pub async fn workflowexecutions_projects_locations_workflows_executions_step_ent
     let local_var_uri_str = format!(
         "{}/v1/{parent}/stepEntries",
         local_var_configuration.base_path,
-        // parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
+        parent = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(parent)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1140,7 +1141,7 @@ pub async fn workflowexecutions_projects_locations_workflows_trigger_pubsub_exec
     let local_var_uri_str = format!(
         "{}/v1/{workflow}:triggerPubsubExecution",
         local_var_configuration.base_path,
-        // workflow = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(workflow)
+        workflow = crate::google_rest_apis::workflowexecutions_v1::apis::urlencode(workflow)
     );
     let mut local_var_req_builder =
         local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());

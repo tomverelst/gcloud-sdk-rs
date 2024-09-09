@@ -32,10 +32,10 @@ tags:
 paths:
   /v1/{name}:
     get:
-      description: Gets a step entry.
-      operationId: workflowexecutions.projects.locations.workflows.executions.stepEntries.get
+      description: Gets a workflow execution.
+      operationId: workflowexecutions.projects.locations.workflows.executions.get
       parameters:
-        - description: "Required. The name of the step entry to retrieve. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}/stepEntries/{step_entry}"
+        - description: "Required. The name of the workflow execution to retrieve. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}"
           in: path
           name: name
           required: true
@@ -55,7 +55,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/StepEntry"
+                $ref: "#/components/schemas/Execution"
           description: Successful response
       security:
         - Oauth2:
